@@ -1,0 +1,67 @@
+<style>
+    * {
+    padding: 0;
+    margin: 0;
+}
+    .container {
+    }
+
+    .container div {
+
+        float: left;
+        padding: 5px;
+        border:1px solid #000;
+    }
+</style>
+
+<body>
+    <div class="container" id="container">
+    </div>
+
+    <button id="start" onclick="sort()">start</button>
+    <p id="test"></p>
+</body>
+
+<script>
+    function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
+    }
+    var arr = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    shuffle(arr);
+    var container = document.getElementById('container');
+    arr.forEach (x => {
+        var bar = document.createElement('div');
+        bar.innerHTML = x;
+        bar.id = String(x);
+        bar.style.height = 50 * x;
+        container.appendChild(bar);
+
+    });
+    var i = 0;
+    var red = true;
+
+    
+
+    function sort(x) {
+        setTimeout(function() {  
+            if (red) {
+               document.getElementById(String(x)).style.color = 'red';
+                console.log('red' + x);
+                red = false;
+            } else {
+                document.getElementById(String(x)).style.color = 'black';
+                console.log('b' + x);
+                red = true;
+            }
+
+                   //  increment the counter
+            if (i < 2) {   
+                i++;         //  if the counter < 10, call the loop function
+                sort(x);             //  ..  again which will trigger another 
+            }                      //  ..  setTimeout()
+        }, 1000)
+    }
+
+    functin
+    
+</script>
