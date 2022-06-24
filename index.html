@@ -19,6 +19,7 @@
     </div>
 
     <button id="start" onclick="sort()">start</button>
+    <button id="swap" onclick="swap(1,4)">swap</button>
     <p id="test"></p>
 </body>
 
@@ -35,33 +36,75 @@
         bar.id = String(x);
         bar.style.height = 50 * x;
         container.appendChild(bar);
-
     });
     var i = 0;
     var red = true;
 
-    
+    var index = 0;
+    var pivot = arr[9];
 
-    function sort(x) {
+    var a = -1;
+
+    function swap(i3, j3) {
+        var i2 = arr[i3];
+        var j2 = arr[j3];
+        console.log(document.getElementById(i2));
+        console.log(document.getElementById(j2));
+        console.log(i2, j2);
+        var iHTML = document.getElementById(String(i2));
+ 
+        iHTML.innerHTML = j2;
+        iHTML.style.height = 50 * j2;
+
+        var jHTML = document.getElementById(String(j2));
+        jHTML.innerHTML = i2;
+        jHTML.style.height = 50 * i2;
+
+        iHTML.id = j2;
+        jHTML.id = i2;
+        
+        arr[i3] = j2;
+        arr[j3] = i2;
+    }
+
+
+    function sort() {
         setTimeout(function() {  
+            if (index == arr.length) {
+                index = 0;
+            }
+            var x = arr[index];
             if (red) {
                document.getElementById(String(x)).style.color = 'red';
                 console.log('red' + x);
                 red = false;
             } else {
+                if (x < pivot) {
+                    a += 1;
+                    document.getElementById(String(x)).style.color = 'black';
+                    console.log('b' + x);
+                    console.log(arr[0], arr[1],arr[2],arr[3],arr[4],arr[5], arr[6],arr[7],arr[8],arr[9]);
+                    console.log(a, index);
+                    red = true;
+                    swap(a, index);
+                }
                 document.getElementById(String(x)).style.color = 'black';
                 console.log('b' + x);
                 red = true;
             }
 
-                   //  increment the counter
-            if (i < 2) {   
-                i++;         //  if the counter < 10, call the loop function
-                sort(x);             //  ..  again which will trigger another 
-            }                      //  ..  setTimeout()
+                   
+            if (i < 1) {   
+                i++;         
+                sort();
+            } else {
+                i = 0;
+                index++;
+                sort();
+            }                    
         }, 1000)
     }
 
-    functin
+
     
 </script>
