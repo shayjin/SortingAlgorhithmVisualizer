@@ -3,14 +3,16 @@
     padding: 0;
     margin: 0;
 }
-    .container {
+    body {
+        
     }
 
     .container div {
 
         float: left;
-        padding: 5px;
+        padding: 1vw;
         border:1px solid #000;
+        font-size: 0.5vw;
     }
 </style>
 
@@ -18,47 +20,50 @@
     <div class="container" id="container">
     </div>
 
-    <button id="start" onclick="sort()">start</button>
+    <button id="start" onclick="quickSort(array, 0, 4, -1, 0, 'start')">Quick Sort</button>
+    <button onclick="mergeSort(array, 0, 4)">Merge Sort</button>
     <button id="swap" onclick="swap(1,4)">swap</button>
-    <p id="test"></p>
+    <p id="test">afdads</p>
 </body>
 
 <script>
     function shuffle(array) {
         array.sort(() => Math.random() - 0.5);
     }
-    var arr = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-    shuffle(arr);
+    var array = [];
+
+    for (var i = 0; i < 5; i++) {
+        array[i] = i + 1;
+    }
+    shuffle(array);
     var container = document.getElementById('container');
-    arr.forEach (x => {
+    array.forEach (x => {
         var bar = document.createElement('div');
         bar.innerHTML = x;
         bar.id = String(x);
-        bar.style.height = 50 * x;
+        bar.style.height =  x;
         container.appendChild(bar);
     });
-    var i = 0;
+    var li = 0;
     var red = true;
 
     var index = 0;
-    var pivot = arr[9];
+    var pivot = array[4];
 
     var a = -1;
 
-    function swap(i3, j3) {
+    function swap(arr, i3, j3) {
         var i2 = arr[i3];
         var j2 = arr[j3];
-        console.log(document.getElementById(i2));
-        console.log(document.getElementById(j2));
-        console.log(i2, j2);
+
         var iHTML = document.getElementById(String(i2));
  
         iHTML.innerHTML = j2;
-        iHTML.style.height = 50 * j2;
+        iHTML.style.height =   j2;
 
         var jHTML = document.getElementById(String(j2));
         jHTML.innerHTML = i2;
-        jHTML.style.height = 50 * i2;
+        jHTML.style.height = i2;
 
         iHTML.id = j2;
         jHTML.id = i2;
@@ -67,42 +72,69 @@
         arr[j3] = i2;
     }
 
-
-    function sort() {
+    
+var j = 0;
+    function quickSort(arr, lo, hi, i, j, state) {
         setTimeout(function() {  
-            if (index == arr.length) {
-                index = 0;
-            }
-            var x = arr[index];
-            if (red) {
-               document.getElementById(String(x)).style.color = 'red';
-                console.log('red' + x);
-                red = false;
-            } else {
-                if (x < pivot) {
-                    a += 1;
-                    document.getElementById(String(x)).style.color = 'black';
-                    console.log('b' + x);
-                    console.log(arr[0], arr[1],arr[2],arr[3],arr[4],arr[5], arr[6],arr[7],arr[8],arr[9]);
-                    console.log(a, index);
-                    red = true;
-                    swap(a, index);
-                }
-                document.getElementById(String(x)).style.color = 'black';
-                console.log('b' + x);
-                red = true;
-            }
 
-                   
-            if (i < 1) {   
-                i++;         
-                sort();
+            if (lo <= hi) {
+
+                console.log(state+ ": " + arr[j]);
+                var x = arr[j];
+                var pivot = arr[hi];
+                
+                    if (red) {
+                        document.getElementById(String(x)).style.background = 'red';
+                         red = false;
+                     } else {
+                         if (arr[j] < pivot) {
+                            i += 1;
+                             document.getElementById(String(x)).style.background = 'white';
+                             red = true;
+                             swap(arr, i, j);
+                         }
+                         document.getElementById(String(x)).style.background = 'white';
+                         red = true;
+                     }
+                
+                
+    
+                       
+                if (li == 0) {   
+                    li++;         
+                    quickSort(arr, lo, hi, i, j, state);
+                } else {
+                    li = 0;
+                    j++;
+                    if (j > hi - 1) {
+                        i += 1;
+                        swap(arr, i, hi);
+                        var z = i;
+                        i = -1;
+                        j = 0;
+                        console.log("new");
+                        quickSort(arr, lo, z-1,lo-1, lo, 'before');
+                        quickSort(arr,z+1, hi, z, z+1, 'after');
+                        
+                    } else {
+                        quickSort(arr,lo, hi, i, j, state);
+                    }
+                }      
             } else {
-                i = 0;
-                index++;
-                sort();
-            }                    
-        }, 1000)
+                console.log("done");
+            }
+                          
+        }, 5)
+
+    }
+
+    function mergeSort(arr, beg, end) {
+        if (beg < end) {
+            var mid = (beg + end) / 2;
+            mergeSort(arr, beg, mid);
+            mergeSort(arr, mid + 1, end);
+        }
+
     }
 
 
