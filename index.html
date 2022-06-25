@@ -10,9 +10,9 @@
     .container div {
 
         float: left;
-        padding: 1vw;
+        padding: 0vw;
         border:1px solid #000;
-        font-size: 0.5vw;
+        font-size: 1px;
     }
 </style>
 
@@ -20,8 +20,8 @@
     <div class="container" id="container">
     </div>
 
-    <button id="start" onclick="quickSort(array, 0, 4, -1, 0, 'start')">Quick Sort</button>
-    <button onclick="mergeSort(array, 0, 4)">Merge Sort</button>
+    <button id="start" onclick="quickSort(array, 0, 99, -1, 0, 'start')">Quick Sort</button>
+    <button onclick="mergeSort(array, 0, 99, 'fuck')">Merge Sort</button>
     <button id="swap" onclick="swap(1,4)">swap</button>
     <p id="test">afdads</p>
 </body>
@@ -32,10 +32,11 @@
     }
     var array = [];
 
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 100; i++) {
         array[i] = i + 1;
     }
     shuffle(array);
+    console.log(array);
     var container = document.getElementById('container');
     array.forEach (x => {
         var bar = document.createElement('div');
@@ -128,15 +129,106 @@ var j = 0;
 
     }
 
-    function mergeSort(arr, beg, end) {
+    function mergeSort(arr, beg, end, state) {
         if (beg < end) {
-            var mid = (beg + end) / 2;
-            mergeSort(arr, beg, mid);
-            mergeSort(arr, mid + 1, end);
+            var mid = Math.floor((beg + end) / 2);
+            console.log(array);
+           mergeSort(arr, beg, mid, "start");
+
+                mergeSort(arr, mid + 1, end, "end");
+                    merge(arr, beg, mid, end, 0, 0, beg, state, -1);
         }
 
     }
 
+    var n1, n2, leftArray = {}, rightArray={};
+    li = 0;
+    red = true;
+    function merge(arr, beg, mid, end, i, j, k, state, step) { 
+            if (k <= end && beg < end) {   
+                if (step == -1) {
+                    for (var ii = 0; ii < mid - beg + 1; ii++) {
+                        console.log("Assigning Left: ", arr[beg + ii]);
+                        leftArray[ii] = arr[beg + ii];
+                    }
+        
+                    for (var jj = 0; jj < end - mid; jj++) {
+                        console.log("Assigning Right: ", arr[mid+1+jj]);
+                        rightArray[jj] = arr[mid + 1 + jj];
+                    }
+                    step++;
+                }
+                if (step == 0) {
+                    console.log(state + " Step 0!");
+                    if (i < mid - beg + 1 && j < end - mid) {
+                        if (red) {
+                            if (leftArray[i] <= rightArray[j]) {
+                                //document.getElementById(String(leftArray[i])).style.background = 'red';
+                                console.log("swap ", arr[k], leftArray[i]);
 
+                                swap(arr, k, arr.indexOf(leftArray[i]));
+                                //arr[k] = leftArray[i];
+                                i++;
+    
+                            } else {
+                               //document.getElementById(rightArray[j]).style.background = 'white';
+                               console.log("swap ", arr[k], rightArray[j]);
+                               swap(arr, k, arr.indexOf(rightArray[j]));
+                               // arr[k] = rightArray[j];
+                                j++;
+                            }
+                            k++;
+                            red = false;
+                        } else {
+                            red = true;
+                        }
+                        
+                    } else {
+                        step++;
+                    }
+                }
+                else if (step ==1) {
+                    console.log("Step 1!");
+                    if (i <mid - beg + 1) {
+                        console.log("swap ", arr[k], leftArray[i]);
+                        swap(arr, k, arr.indexOf(leftArray[i]));
+                        //arr[k] = leftArray[i];
+                        i++;
+                        k++;
+                    } else {
+                        step++;
+                    }
+        
+                }
+                else if (step ==2) {
+                    console.log("Step 2!");
+                    if ( j < end - mid) {
+                        console.log("swap ", arr[k], rightArray[j]);
+                        swap(arr, k, arr.indexOf(rightArray[j]));
+                        //a[k]=rightArray[j];
+                        j++;
+                        k++;
+                    } else {
+                        step = -1;
+                    }
+                } 
+                console.log(state, leftArray);
+                console.log(state, rightArray);
+                console.log(state, beg, mid, end);
+                console.log(state, arr);
+                console.log('step', state, step);
+                if (li == 0) {
+                    li++;
+                    console.log(state, "ijk",i,j,k);
+                    merge(arr, beg, mid, end, i, j, k, state, step);
+                } else {
+                    li = 0;
+                    merge(arr, beg, mid, end, i, j, k, state, step);
+                }
+            } 
+        
+
+
+    }
     
 </script>
