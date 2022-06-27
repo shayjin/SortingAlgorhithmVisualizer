@@ -19,16 +19,27 @@
 <body>
     <div class="container" id="container">
     </div>
+    <div id="buttons">
+        <button id="start" onclick="quickSort(array, 0, 99, -1, 0, 'start')">Quick Sort</button>
+        <button onclick="mergeSort2(array, 0, 99, 'fuck')">Merge Sort</button>
+        <button onclick="heapSort(array)">Heap Sort</button>
+        <button id="swap" onclick="shuffle(array)">swap</button>
+    </div>
 
-    <button id="start" onclick="quickSort(array, 0, 99, -1, 0, 'start')">Quick Sort</button>
-    <button onclick="mergeSort2(array, 0, 99, 'fuck')">Merge Sort</button>
-    <button id="swap" onclick="swap(1,4)">swap</button>
-    <p id="test">afdads</p>
 </body>
 
 <script>
     function shuffle(array) {
         array.sort(() => Math.random() - 0.5);
+        var container = document.getElementById('container');
+        container.innerHTML = "";
+        array.forEach (x => {
+            var bar = document.createElement('div');
+            bar.innerHTML = x;
+            bar.id = String(x);
+            bar.style.height =  x;
+            container.appendChild(bar);
+        });
     }
     var array = [];
     var sortedArray = [];
@@ -38,15 +49,9 @@
         sortedArray[i] = i + 1;
     }
     shuffle(array);
-    console.log(array);
-    var container = document.getElementById('container');
-    array.forEach (x => {
-        var bar = document.createElement('div');
-        bar.innerHTML = x;
-        bar.id = String(x);
-        bar.style.height =  x;
-        container.appendChild(bar);
-    });
+
+
+
     var li = 0;
     var red = true;
 
@@ -58,7 +63,7 @@
     function swap(arr, i3, j3) {
         var i2 = arr[i3];
         var j2 = arr[j3];
-
+        console.log(i3, j3);
         var iHTML = document.getElementById(String(i2));
  
         iHTML.innerHTML = j2;
@@ -198,21 +203,22 @@ var prev;
                         console.log("?", red);
                        // setTimeout(function() { 
                             if (red) {
-
+                                
+                                document.getElementById(leftArray[i]).style.background = 'red';
+                                document.getElementById(rightArray[j]).style.background = 'red';
                                 if (leftArray[i] <= rightArray[j]) {
-                                document.getElementById(String(leftArray[i])).style.background = 'red';
-
                                     prev = leftArray[i];
             
                                 } else {
-                                document.getElementById(rightArray[j]).style.background = 'red';
+
                                 prev = rightArray[j];
           
                                 }
 
                                 red = false;
                             } else {
-                             document.getElementById(String(prev)).style.background = 'white';
+                             document.getElementById(leftArray[i]).style.background = 'white';
+                            document.getElementById(rightArray[j]).style.background = 'white';
                              if (prev == leftArray[i]) {
                                 i++;
                              } else if (prev == rightArray[j]) {
@@ -285,4 +291,37 @@ var prev;
             }
     }
     
+    function heapSort(arr) {
+        var len = arr.length;
+
+        for (var i = len / 2 - 1; i >= 0; i--) {
+            heapify(arr, len, i);
+        }
+
+        for (var i = len - 1; i >= 0; i--) {
+            swap(arr, 0, i);
+            heapify(arr, i, 0);
+        }
+        console.log(arr);
+    }
+
+    function heapify(arr, n, i) {
+        var largest = i;
+        var left = 2*i + 1;
+        var right = 2*i + 2;
+
+        if (left < n && arr[left] > arr[largest]) {
+            largest = left;
+        }
+
+        if (right < n && arr[right] > arr[largest]) {
+            largest = right;
+        }
+
+        if (largest != i) {
+
+            swap(arr, i, largest);
+            heapify(arr, n, largest);
+        }
+    }
 </script>
