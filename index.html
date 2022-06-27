@@ -63,7 +63,6 @@
     function swap(arr, i3, j3) {
         var i2 = arr[i3];
         var j2 = arr[j3];
-        console.log(i3, j3);
         var iHTML = document.getElementById(String(i2));
  
         iHTML.innerHTML = j2;
@@ -294,34 +293,78 @@ var prev;
     function heapSort(arr) {
         var len = arr.length;
 
-        for (var i = len / 2 - 1; i >= 0; i--) {
-            heapify(arr, len, i);
-        }
-
-        for (var i = len - 1; i >= 0; i--) {
-            swap(arr, 0, i);
-            heapify(arr, i, 0);
-        }
-        console.log(arr);
+        heapSort1(arr, len/2 - 1);
     }
 
-    function heapify(arr, n, i) {
-        var largest = i;
+    function heapSort1(arr, i) {
+        var len = arr.length;
+        setTimeout(function() {
+            if (i >= 0) {
+                console.log(i);
+                heapify(arr, len, i, i);
+                i--;
+                heapSort1(arr, i);
+            } else {
+                heapSort2(arr, arr.length - 1);
+            }
+        }, 80);
+    }
+
+    function heapSort2(arr, i) {
+        setTimeout(function() {
+            if (i >= 0) {
+                swap(arr, 0, i);
+                heapify(arr, i, 0, 0);
+                i--;
+                heapSort2(arr, i);
+            }
+        }, 80);
+    }
+
+    red = true;
+
+    function heapify(arr, n, i, lar) {
+        var largest = lar;
         var left = 2*i + 1;
         var right = 2*i + 2;
 
-        if (left < n && arr[left] > arr[largest]) {
-            largest = left;
+        setTimeout(function() {
+        if (red) {
+            if (left < n) {
+                document.getElementById(left).style.background = 'red';
+                if (arr[left] > arr[largest]) {
+                    largest = left;
+                }
+            }
+            if (right < n) {
+                document.getElementById(right).style.background = 'red';
+                if (arr[right] > arr[largest]) {
+                    largest = right;
+                }
+            }
+            
+        
+           red = false;
+           console.log("Da: ", i);
+            heapify(arr, n, i, largest);
+        } else {
+            if (left <n) {
+                document.getElementById(left).style.background = 'white';
+            }
+
+            if (right < n) {
+                document.getElementById(right).style.background = 'white';
+            }
+            
+            red = true;
+            if (largest != i) {
+                console.log("FUQ:", i);
+                swap(arr, i, largest);
+                heapify(arr, n, largest, largest);
+            } 
+
         }
 
-        if (right < n && arr[right] > arr[largest]) {
-            largest = right;
-        }
-
-        if (largest != i) {
-
-            swap(arr, i, largest);
-            heapify(arr, n, largest);
-        }
+    }, 1);
     }
 </script>
