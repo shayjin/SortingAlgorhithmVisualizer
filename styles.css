@@ -1,0 +1,27 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+    .container div {
+
+        margin:0;
+        padding: 0.1vw;
+        border: 0.2vw solid gray;
+        display:inline-block;   
+        font-size: 0.3vw;
+    }
+
+    .container{
+        text-align:center;
+        display:inline-block;
+    	width:100%;
+    	height: 80px;
+    }
+
+    #buttons {
+        text-align:center;
+        display:inline-block;
+    	width:100%;
+    	height: 80px;
+    }
