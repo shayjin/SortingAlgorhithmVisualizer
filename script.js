@@ -18,7 +18,7 @@ for (var i = 0; i <100; i++) {
     sortedArray[i] = i + 1;
 }
 shuffle(array);
-
+var stat = 0;
 
 
 var li = 0;
@@ -28,6 +28,25 @@ var index = 0;
 var pivot = array[4];
 
 var a = -1;
+
+function disableButtons() {
+    document.getElementById("quickSort").disabled = true;
+     document.getElementById("heapSort").disabled = true;
+     document.getElementById("mergeSort").disabled = true;
+     document.getElementById("insertionSort").disabled = true;
+     document.getElementById("selectionSort").disabled = true;
+      document.getElementById("swap").disabled = true;
+}
+
+function enableButtons() {
+    document.getElementById("quickSort").disabled = false;
+    document.getElementById("heapSort").disabled = false;
+    document.getElementById("mergeSort").disabled = false;
+    document.getElementById("insertionSort").disabled = false;
+    document.getElementById("selectionSort").disabled = false;
+     document.getElementById("swap").disabled = false;
+}
+
 
 function swap(arr, i3, j3) {
     var i2 = arr[i3];
@@ -50,7 +69,9 @@ function swap(arr, i3, j3) {
 
 
 var j = 0;
+
 function quickSort(arr, lo, hi, i, j, state) {
+    disableButtons();
     setTimeout(function() {  
         if (lo <= hi) {
 
@@ -59,6 +80,9 @@ function quickSort(arr, lo, hi, i, j, state) {
             var pivot = arr[hi];
             
                 if (red) {
+                    stat++;
+                    document.getElementById("type").innerHTML = "Quick Sort Average Time Complexity: N*log(N)";
+                    document.getElementById("comp").innerHTML = stat + " Comparisons";
                     document.getElementById(String(x)).style.background = 'red';
                      red = false;
                  } else {
@@ -96,15 +120,22 @@ function quickSort(arr, lo, hi, i, j, state) {
                 }
             }      
         } else {
-            console.log("done");
-        }
-                      
+            if (compare(arr)) {
+                enableButtons();
+            }
+        }    
     }, 10)
 
+
+
 }
-
-function compare () {
-
+function compare (arr) {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] != sortedArray[i]) {
+            return false;
+        }
+    }
+    return true;
 }
 var n1, n2, leftArray = {}, rightArray={};
 li = 0;
@@ -130,21 +161,26 @@ function mergeSort(arr, beg, end, state) {
             console.log(orders);    
         }
 }
-
+stat = 0;
 function mergeSort2(arr, beg, end, state) {
+    disableButtons();
     mergeSort(arr, beg, end, state);
     test();
+
 }
 var z = 0;
 var prev;
 function test() {
-
+    
     setTimeout(function() { 
         if (z < orders.length) {
             merge(array, orders[z][0], orders[z][1], orders[z][2], 0, 0, orders[z][0], "?", -1);
             z++;
+        } else {
+            enableButtons();
         }
     }, 10);
+    
     
 }
 
@@ -171,7 +207,9 @@ function merge(arr, beg, mid, end, i, j, k, state, step) {
                     console.log("?", red);
                    // setTimeout(function() { 
                         if (red) {
-                            
+                            stat++;
+                            document.getElementById("type").innerHTML = "Merge Sort Average Time Complexity: N*log(N)";
+                        document.getElementById("comp").innerHTML = stat + " Comparisons";
                             document.getElementById(leftArray[i]).style.background = 'red';
                             document.getElementById(rightArray[j]).style.background = 'red';
                             if (leftArray[i] <= rightArray[j]) {
@@ -256,10 +294,12 @@ function merge(arr, beg, mid, end, i, j, k, state, step) {
         }, 10);
         } else {
             test();
+            
         }
 }
-
+stat = 0;
 function heapSort(arr) {
+    disableButtons();
     var len = arr.length;
 
     heapSort1(arr, len/2 - 1);
@@ -282,6 +322,8 @@ function heapSort2(arr, i) {
         if (i >= 0) {
             swap(arr, 0, i);
             heapify(arr, i, 0, 0, 2, i);
+        } else {
+            enableButtons();
         }
     }, 10);
 }
@@ -296,12 +338,18 @@ function heapify(arr, n, i, lar, t, save) {
     setTimeout(function() {
     if (red) {
         if (left < n) {
+            stat++;
+            document.getElementById("type").innerHTML = "Heap Sort Average Time Complexity: N*log(N)";
+            document.getElementById("comp").innerHTML = stat + " Comparisons";
             document.getElementById(left).style.background = 'red';
             if (arr[left] > arr[largest]) {
                 largest = left;
             }
         }
         if (right < n) {
+            stat++;
+            document.getElementById("type").innerHTML = "Heap Sort Average Time Complexity: N*log(N)";
+            document.getElementById("comp").innerHTML = stat + " Comparisons";
             document.getElementById(right).style.background = 'red';
             if (arr[right] > arr[largest]) {
                 largest = right;
@@ -338,7 +386,7 @@ function heapify(arr, n, i, lar, t, save) {
 
 }, 10);
 }
-
+stat = 0;
 function insertionSort(arr, i) {
     setTimeout(function() {
         if (i < arr.length) {
@@ -355,8 +403,11 @@ function insertionSort2(arr, j,key, i) {
     setTimeout(function() {
     if (j >= 0 && arr[j] > key) {
         if (red) {
+            stat++;
+            document.getElementById("type").innerHTML = "Insertion Sort Average Time Complexity: N^2";
+            document.getElementById("comp").innerHTML = stat + " Comparisons";
             document.getElementById(arr[j]).style.background = 'red';
-            red =false;
+            red = false;
             insertionSort2(arr, j,key, i);
         } else {
             document.getElementById(arr[j]).style.background = 'white';
@@ -371,6 +422,7 @@ function insertionSort2(arr, j,key, i) {
 }
 
 function selectionSort(arr) {
+    stat = 0;
     var len = arr.length;
     selectionSort1(arr, 0, len);
     console.log(arr);
@@ -388,6 +440,9 @@ red = true;
 function selectionSort2(arr, i, j, len, min) {
     setTimeout(function() {
         if (red){
+            stat++;
+            document.getElementById("type").innerHTML = "Selection Sort Average Time Complexity: N^2"
+            document.getElementById("comp").innerHTML = stat + " Comparisons";
             document.getElementById(j).style.background = 'red';
             red = false;
             //var audio = new Audio('src/' + j + '.mp3');

@@ -19,7 +19,7 @@
     	height: 80px;
     }
 
-    #buttons {
+    #buttons, #stats{
         text-align:center;
         display:inline-block;
     	width:100%;

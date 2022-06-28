@@ -9,12 +9,19 @@
     </div>
     <br><br><br><br><br><br><br><br><br><br>
     <div id="buttons">
-        <button id="start" onclick="quickSort(array, 0, array.length - 1, -1, 0, 'start')">Quick Sort</button>
-        <button onclick="mergeSort2(array, 0, array.length-1, 'fuck')">Merge Sort</button>
-        <button onclick="heapSort(array)">Heap Sort</button>
-        <button onclick="insertionSort(array, 1)">Insertion Sort</button>
-        <button onclick="selectionSort(array)">Selection Sort</button>
+        <button id="quickSort" onclick="quickSort(array, 0, array.length - 1, -1, 0, 'start')">Quick Sort</button>
+        <button id="mergeSort" onclick="mergeSort2(array, 0, array.length-1, 'fuck')">Merge Sort</button>
+        <button id="heapSort" onclick="heapSort(array)">Heap Sort</button>
+        <button id="insertionSort" onclick="insertionSort(array, 1)">Insertion Sort</button>
+        <button id="selectionSort" onclick="selectionSort(array)">Selection Sort</button>
+    </div>
+    <div id="buttons">
         <button id="swap" onclick="shuffle(array)">swap</button>
+    </div>
+
+    <div id="stats">
+        <div id="type"></div>
+        <div id="comp"></div>
     </div>
 
 </body>
