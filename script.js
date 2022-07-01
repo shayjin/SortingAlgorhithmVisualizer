@@ -69,18 +69,19 @@ function swap(arr, i3, j3) {
 
 
 var j = 0;
-
 function quickSort(arr, lo, hi, i, j, state) {
     disableButtons();
+    if (state == "start") {
+        stat = 0;
+    }
     setTimeout(function() {  
         if (lo <= hi) {
-
-            console.log(state+ ": " + arr[j]);
             var x = arr[j];
             var pivot = arr[hi];
             
                 if (red) {
-                    stat++;
+                    stat += 1;
+                    console.log(stat);
                     document.getElementById("type").innerHTML = "Quick Sort Average Time Complexity: N*log(N)";
                     document.getElementById("comp").innerHTML = stat + " Comparisons";
                     document.getElementById(String(x)).style.background = 'red';
@@ -95,13 +96,9 @@ function quickSort(arr, lo, hi, i, j, state) {
                      document.getElementById(String(x)).style.background = 'white';
                      red = true;
                  }
-            
-            
-
-                   
             if (li == 0) {   
                 li++;         
-                quickSort(arr, lo, hi, i, j, state);
+                quickSort(arr, lo, hi, i, j, "not start");
             } else {
                 li = 0;
                 j++;
@@ -111,12 +108,12 @@ function quickSort(arr, lo, hi, i, j, state) {
                     var z = i;
                     i = -1;
                     j = 0;
-                    console.log("new");
+    
                     quickSort(arr, lo, z-1,lo-1, lo, 'before');
                     quickSort(arr,z+1, hi, z, z+1, 'after');
                     
                 } else {
-                    quickSort(arr,lo, hi, i, j, state);
+                    quickSort(arr,lo, hi, i, j, "not start ");
                 }
             }      
         } else {
@@ -161,8 +158,8 @@ function mergeSort(arr, beg, end, state) {
             console.log(orders);    
         }
 }
-stat = 0;
 function mergeSort2(arr, beg, end, state) {
+    stat = 0;
     disableButtons();
     mergeSort(arr, beg, end, state);
     test();
@@ -297,8 +294,9 @@ function merge(arr, beg, mid, end, i, j, k, state, step) {
             
         }
 }
-stat = 0;
+
 function heapSort(arr) {
+    stat = 0;
     disableButtons();
     var len = arr.length;
 
@@ -386,8 +384,9 @@ function heapify(arr, n, i, lar, t, save) {
 
 }, 10);
 }
-stat = 0;
+
 function insertionSort(arr, i) {
+    stat = 0;
     setTimeout(function() {
         if (i < arr.length) {
             var key = arr[i];
