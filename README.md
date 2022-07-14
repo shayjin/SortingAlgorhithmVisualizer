@@ -17,5 +17,9 @@ A JavaScript sorting algorthihm visualizer that sorts from 1 to 100 with animati
 - Jay Shin (shin.810@osu.edu)
 
 ## Demo
-<img width="465" alt="sa" src="https://user-images.githubusercontent.com/83435667/179072124-0d1e1fd8-9a19-4a19-852b-29e811858fe8.png">
+- [Link](https://shay.live/SortingAlgorhithms.html)
 
+
+
+
+<img width="465" alt="sa" src="https://user-images.githubusercontent.com/83435667/179072310-593fdaeb-7722-4c13-941e-f294274a5b36.png">
