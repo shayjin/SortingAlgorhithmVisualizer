@@ -6,10 +6,12 @@ function shuffle(array) {
         var bar = document.createElement('div');
         bar.innerHTML = x;
         bar.id = String(x);
-        bar.style.height =  x*2;
+        bar.style.height =  x*5;
         container.appendChild(bar);
     });
+    enableButtons();
 }
+
 var array = [];
 var sortedArray = [];
 
@@ -17,7 +19,9 @@ for (var i = 0; i <100; i++) {
     array[i] = i + 1;
     sortedArray[i] = i + 1;
 }
+
 shuffle(array);
+
 var stat = 0;
 
 
@@ -39,11 +43,20 @@ function disableButtons() {
 }
 
 function enableButtons() {
-    document.getElementById("quickSort").disabled = false;
-    document.getElementById("heapSort").disabled = false;
-    document.getElementById("mergeSort").disabled = false;
-    document.getElementById("insertionSort").disabled = false;
-    document.getElementById("selectionSort").disabled = false;
+    var equal = true;
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] != sortedArray[i]) {
+            equal = false;
+        }
+    }
+    
+    if (!equal) {
+        document.getElementById("quickSort").disabled = false;
+        document.getElementById("heapSort").disabled = false;
+        document.getElementById("mergeSort").disabled = false;
+        document.getElementById("insertionSort").disabled = false;
+        document.getElementById("selectionSort").disabled = false;
+    }
      document.getElementById("swap").disabled = false;
 }
 
@@ -54,11 +67,11 @@ function swap(arr, i3, j3) {
     var iHTML = document.getElementById(String(i2));
 
     iHTML.innerHTML = j2;
-    iHTML.style.height =   j2;
+    iHTML.style.height =   j2 * 5;
 
     var jHTML = document.getElementById(String(j2));
     jHTML.innerHTML = i2;
-    jHTML.style.height = i2;
+    jHTML.style.height = i2 * 5;
 
     iHTML.id = j2;
     jHTML.id = i2;
@@ -82,18 +95,18 @@ function quickSort(arr, lo, hi, i, j, state) {
                 if (red) {
                     stat += 1;
                     console.log(stat);
-                    document.getElementById("type").innerHTML = "Quick Sort Average Time Complexity: N*log(N)";
+                    document.getElementById("type").innerHTML = "Quick Sort Average Time Complexity: N * log(N)";
                     document.getElementById("comp").innerHTML = stat + " Comparisons";
                     document.getElementById(String(x)).style.background = 'red';
                      red = false;
                  } else {
                      if (arr[j] < pivot) {
                         i += 1;
-                         document.getElementById(String(x)).style.background = 'white';
+                         document.getElementById(String(x)).style.background = 'rgb(40, 41, 44)';
                          red = true;
                          swap(arr, i, j);
                      }
-                     document.getElementById(String(x)).style.background = 'white';
+                     document.getElementById(String(x)).style.background = 'rgb(40, 41, 44)';
                      red = true;
                  }
             if (li == 0) {   
@@ -205,7 +218,7 @@ function merge(arr, beg, mid, end, i, j, k, state, step) {
                    // setTimeout(function() { 
                         if (red) {
                             stat++;
-                            document.getElementById("type").innerHTML = "Merge Sort Average Time Complexity: N*log(N)";
+                            document.getElementById("type").innerHTML = "Merge Sort Average Time Complexity: N * log(N)";
                         document.getElementById("comp").innerHTML = stat + " Comparisons";
                             document.getElementById(leftArray[i]).style.background = 'red';
                             document.getElementById(rightArray[j]).style.background = 'red';
@@ -220,8 +233,8 @@ function merge(arr, beg, mid, end, i, j, k, state, step) {
 
                             red = false;
                         } else {
-                         document.getElementById(leftArray[i]).style.background = 'white';
-                        document.getElementById(rightArray[j]).style.background = 'white';
+                         document.getElementById(leftArray[i]).style.background = 'rgb(40, 41, 44)';
+                        document.getElementById(rightArray[j]).style.background = 'rgb(40, 41, 44)';
                          if (prev == leftArray[i]) {
                             i++;
                          } else if (prev == rightArray[j]) {
@@ -245,7 +258,7 @@ function merge(arr, beg, mid, end, i, j, k, state, step) {
                             document.getElementById(String(leftArray[i])).style.background = 'red';
                             red = false;
                         } else {
-                            document.getElementById(String(leftArray[i])).style.background = 'white';
+                            document.getElementById(String(leftArray[i])).style.background = 'rgb(40, 41, 44)';
                             swap(arr, k, arr.indexOf(leftArray[i]));
                             red = true;
                             i++;
@@ -266,7 +279,7 @@ function merge(arr, beg, mid, end, i, j, k, state, step) {
                             document.getElementById(String(rightArray[j])).style.background = 'red';
                             red = false;
                         } else {
-                            document.getElementById(String(rightArray[j])).style.background = 'white';
+                            document.getElementById(String(rightArray[j])).style.background = 'rgb(40, 41, 44)';
                             swap(arr, k, arr.indexOf(rightArray[j]));
                             red = true;
                             j++;
@@ -337,7 +350,7 @@ function heapify(arr, n, i, lar, t, save) {
     if (red) {
         if (left < n) {
             stat++;
-            document.getElementById("type").innerHTML = "Heap Sort Average Time Complexity: N*log(N)";
+            document.getElementById("type").innerHTML = "Heap Sort Average Time Complexity: N * log(N)";
             document.getElementById("comp").innerHTML = stat + " Comparisons";
             document.getElementById(left).style.background = 'red';
             if (arr[left] > arr[largest]) {
@@ -346,7 +359,7 @@ function heapify(arr, n, i, lar, t, save) {
         }
         if (right < n) {
             stat++;
-            document.getElementById("type").innerHTML = "Heap Sort Average Time Complexity: N*log(N)";
+            document.getElementById("type").innerHTML = "Heap Sort Average Time Complexity: N * log(N)";
             document.getElementById("comp").innerHTML = stat + " Comparisons";
             document.getElementById(right).style.background = 'red';
             if (arr[right] > arr[largest]) {
@@ -360,11 +373,11 @@ function heapify(arr, n, i, lar, t, save) {
         heapify(arr, n, i, largest, t, save);
     } else {
         if (left <n) {
-            document.getElementById(left).style.background = 'white';
+            document.getElementById(left).style.background = 'rgb(40, 41, 44)';
         }
 
         if (right < n) {
-            document.getElementById(right).style.background = 'white';
+            document.getElementById(right).style.background = 'rgb(40, 41, 44)';
         }
         
         red = true;
@@ -386,7 +399,7 @@ function heapify(arr, n, i, lar, t, save) {
 }
 
 function insertionSort(arr, i) {
-    stat = 0;
+    disableButtons();
     setTimeout(function() {
         if (i < arr.length) {
             var key = arr[i];
@@ -394,7 +407,12 @@ function insertionSort(arr, i) {
 
             insertionSort2(arr,j, key, i);
         }
-    }, 10);
+    }, 1);
+    if (i >= arr.length) {
+        enableButtons();
+        stat = 0;
+    }
+
 }
 
 red = true;
@@ -409,7 +427,7 @@ function insertionSort2(arr, j,key, i) {
             red = false;
             insertionSort2(arr, j,key, i);
         } else {
-            document.getElementById(arr[j]).style.background = 'white';
+            document.getElementById(arr[j]).style.background = 'rgb(40, 41, 44)';
             swap(arr, j+1, j);
             red = true;
             insertionSort2(arr, j-1,key, i);
@@ -417,7 +435,7 @@ function insertionSort2(arr, j,key, i) {
     } else {
         insertionSort(arr, i+1);
     }
-}, 10);
+}, 1);
 }
 
 function selectionSort(arr) {
@@ -428,9 +446,15 @@ function selectionSort(arr) {
 }
 
 function selectionSort1(arr, i, len) {
-    if (i < len -1) {
+    disableButtons();
+    if (i < len - 1) {
         var min = i;
        selectionSort2(arr, i, i+1, len, min);
+    }
+
+    if (i >= len - 1) {
+        enableButtons();
+        stat = 0;
     }
 }
 
@@ -448,7 +472,7 @@ function selectionSort2(arr, i, j, len, min) {
             //audio.play();
             selectionSort2(arr, i, j, len, min);
         } else {
-            document.getElementById(j).style.background = 'white';
+            document.getElementById(j).style.background = 'rgb(40, 41, 44)';
             red = true;
             if (j < len) {
                 if (arr[j] < arr[min]){
@@ -461,5 +485,5 @@ function selectionSort2(arr, i, j, len, min) {
             }
         }
 
-    }, 10);
+    }, 1);
 }
