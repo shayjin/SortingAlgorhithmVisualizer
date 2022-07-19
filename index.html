@@ -1,17 +1,28 @@
 <html>
 <head>
     <title>Sorting Algorhithms</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="SortingAlgorhithms.css">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0;">
 </head>
 
 <body>
+    <div class="nav-container" id="begin-sec">
+        <div class="nav">
+        </div>
+        <div class="nav">
+          <a href="index.html"><img class="main-logo" src="sources/shin-jay.png"/></a>
+        </div>
+        <div class="nav">
+        </div>
+      </div>
     <div class="container" id="container">
     </div>
     <br><br><br><br><br><br><br><br><br><br>
     <div id="buttons">
-        <button id="quickSort" onclick="quickSort(array, 0, array.length - 1, -1, 0, 'start')">Quick Sort</button>
-        <button id="mergeSort" onclick="mergeSort2(array, 0, array.length-1, 'fuck')">Merge Sort</button>
+        <button id="mergeSort" onclick="mergeSort2(array, 0, array.length-1, 'f')">Merge Sort</button>
         <button id="heapSort" onclick="heapSort(array)">Heap Sort</button>
+        <button id="quickSort" onclick="quickSort(array, 0, array.length - 1, -1, 0, 'start')">Quick Sort</button>
         <button id="insertionSort" onclick="insertionSort(array, 1)">Insertion Sort</button>
         <button id="selectionSort" onclick="selectionSort(array)">Selection Sort</button>
     </div>
@@ -20,12 +31,13 @@
     </div>
 
     <div id="stats">
+        <div>N = 100</div>
         <div id="type"></div>
         <div id="comp"></div>
     </div>
 
 </body>
 
-<script src="script.js"></script>
+<script src="SortingAlgorhithms.js"></script>
 
 </html>
