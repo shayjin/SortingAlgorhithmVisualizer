@@ -6,34 +6,28 @@
 </head>
 
 <body>
-    <div class="nav-container" id="begin-sec">
-        <div class="nav">
-        </div>
-        <div class="nav">
-          <a href="index.html"><img class="main-logo" src="sources/shin-jay.png"/></a>
-        </div>
-        <div class="nav">
-        </div>
-      </div>
     <div class="container" id="container">
     </div>
-    <br><br><br><br><br><br><br><br><br><br>
-    <div id="buttons">
-        <button id="mergeSort" onclick="mergeSort2(array, 0, array.length-1, 'f')">Merge Sort</button>
-        <button id="heapSort" onclick="heapSort(array)">Heap Sort</button>
-        <button id="quickSort" onclick="quickSort(array, 0, array.length - 1, -1, 0, 'start')">Quick Sort</button>
-        <button id="insertionSort" onclick="insertionSort(array, 1)">Insertion Sort</button>
-        <button id="selectionSort" onclick="selectionSort(array)">Selection Sort</button>
-    </div>
-    <div id="buttons">
-        <button id="swap" style="padding: 2vw;" onclick="shuffle(array)">Shuffle</button>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div class="control">
+        <div id="buttons">
+            <button id="mergeSort" onclick="mergeSort2(array, 0, array.length-1, 'f')">Merge Sort</button>
+            <button id="heapSort" onclick="heapSort(array)">Heap Sort</button>
+            <button id="quickSort" onclick="quickSort(array, 0, array.length - 1, -1, 0, 'start')">Quick Sort</button>
+            <button id="insertionSort" onclick="insertionSort(array, 1)">Insertion Sort</button>
+            <button id="selectionSort" onclick="selectionSort(array)">Selection Sort</button>
+        </div>
+        <div id="swapButton">
+            <button id="swap" style="padding: 2vw; " onclick="shuffle(array)">Shuffle</button>
+        </div>
+
+        <div id="stats">
+            <div>N = 100</div>
+            <div id="type"></div>
+            <div id="comp"></div>
+        </div>  
     </div>
 
-    <div id="stats">
-        <div>N = 100</div>
-        <div id="type"></div>
-        <div id="comp"></div>
-    </div>
 
 </body>
 

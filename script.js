@@ -102,11 +102,11 @@ function quickSort(arr, lo, hi, i, j, state) {
                  } else {
                      if (arr[j] < pivot) {
                         i += 1;
-                         document.getElementById(String(x)).style.background = 'rgb(40, 41, 44)';
+                         document.getElementById(String(x)).style.background = 'white';
                          red = true;
                          swap(arr, i, j);
                      }
-                     document.getElementById(String(x)).style.background = 'rgb(40, 41, 44)';
+                     document.getElementById(String(x)).style.background = 'white';
                      red = true;
                  }
             if (li == 0) {   
@@ -233,8 +233,8 @@ function merge(arr, beg, mid, end, i, j, k, state, step) {
 
                             red = false;
                         } else {
-                         document.getElementById(leftArray[i]).style.background = 'rgb(40, 41, 44)';
-                        document.getElementById(rightArray[j]).style.background = 'rgb(40, 41, 44)';
+                         document.getElementById(leftArray[i]).style.background = 'white';
+                        document.getElementById(rightArray[j]).style.background = 'white';
                          if (prev == leftArray[i]) {
                             i++;
                          } else if (prev == rightArray[j]) {
@@ -258,7 +258,7 @@ function merge(arr, beg, mid, end, i, j, k, state, step) {
                             document.getElementById(String(leftArray[i])).style.background = 'red';
                             red = false;
                         } else {
-                            document.getElementById(String(leftArray[i])).style.background = 'rgb(40, 41, 44)';
+                            document.getElementById(String(leftArray[i])).style.background = 'white';
                             swap(arr, k, arr.indexOf(leftArray[i]));
                             red = true;
                             i++;
@@ -279,7 +279,7 @@ function merge(arr, beg, mid, end, i, j, k, state, step) {
                             document.getElementById(String(rightArray[j])).style.background = 'red';
                             red = false;
                         } else {
-                            document.getElementById(String(rightArray[j])).style.background = 'rgb(40, 41, 44)';
+                            document.getElementById(String(rightArray[j])).style.background = 'white';
                             swap(arr, k, arr.indexOf(rightArray[j]));
                             red = true;
                             j++;
@@ -373,11 +373,11 @@ function heapify(arr, n, i, lar, t, save) {
         heapify(arr, n, i, largest, t, save);
     } else {
         if (left <n) {
-            document.getElementById(left).style.background = 'rgb(40, 41, 44)';
+            document.getElementById(left).style.background = 'white';
         }
 
         if (right < n) {
-            document.getElementById(right).style.background = 'rgb(40, 41, 44)';
+            document.getElementById(right).style.background = 'white';
         }
         
         red = true;
@@ -400,6 +400,7 @@ function heapify(arr, n, i, lar, t, save) {
 
 function insertionSort(arr, i) {
     disableButtons();
+    stat = 0;
     setTimeout(function() {
         if (i < arr.length) {
             var key = arr[i];
@@ -427,7 +428,7 @@ function insertionSort2(arr, j,key, i) {
             red = false;
             insertionSort2(arr, j,key, i);
         } else {
-            document.getElementById(arr[j]).style.background = 'rgb(40, 41, 44)';
+            document.getElementById(arr[j]).style.background = 'white';
             swap(arr, j+1, j);
             red = true;
             insertionSort2(arr, j-1,key, i);
@@ -472,7 +473,7 @@ function selectionSort2(arr, i, j, len, min) {
             //audio.play();
             selectionSort2(arr, i, j, len, min);
         } else {
-            document.getElementById(j).style.background = 'rgb(40, 41, 44)';
+            document.getElementById(j).style.background = 'white';
             red = true;
             if (j < len) {
                 if (arr[j] < arr[min]){
