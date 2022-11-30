@@ -1,25 +1,12 @@
-# Sorting Algorhithm Visualizer
-A JavaScript sorting algorthihm visualizer that sorts from 1 to 100 with animations.
+## Sorting Algorhithm Visualizer
+- A JavaScript application that visualizes various CS sorting algorthihms that sort from 1 to 100. 
+- Implemented a very complex logic ONLY using pure JavaScript WITHOUT ANY USE OF EXTERNAL LIBRARIES. 
+- Heap Sort | Merge Sort | Quick Sort | Selection Sort | Insertion Sort
 
-- Heap Sort
-- Merge Sort
-- Quick Sort
-- Selection Sort
-- Insertion Sort
+## Tech Stack
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 
-## Tools
-- JavaScript
-- HTML/CSS
-- Git
-- Visual Studio Code
-
-## Contributors
-- Jay Shin (shin.810@osu.edu)
 
 ## Demo
-- [Link](https://shay.live/SortingAlgorhithms.html)
-
-
-
-
-<img width="465" alt="sa" src="https://user-images.githubusercontent.com/83435667/179072310-593fdaeb-7722-4c13-941e-f294274a5b36.png">
+- [Link](https://shayjin.github.io/SortingAlgorhithmVisualizer/)
